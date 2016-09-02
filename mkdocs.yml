@@ -1,7 +1,6 @@
 site_name: My Docs
 pages:
     - 'Introduction': 'index.md'
-    - 'About': 'about.md'
     - '後端簡介': 'Backend101.md'
 
 theme: readthedocs
