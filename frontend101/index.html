@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <title>前端101 - My Docs</title>
+  
+
+  <link rel="shortcut icon" href="../img/favicon.ico">
+
+  
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="../css/highlight.css">
+
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "前端101";
+    var mkdocs_page_input_path = "frontend101.md";
+    var mkdocs_page_url = "/frontend101/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js"></script>
+  <script src="../js/modernizr-2.8.3.min.js"></script>
+  <script type="text/javascript" src="../js/highlight.pack.js"></script>
+  <script src="../js/theme.js"></script> 
+
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> My Docs</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+        <ul class="current">
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="..">Introduction</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 ">
+        <a class="" href="../Backend101/">後端101</a>
+        
+    </li>
+<li>
+          
+            <li>
+    <li class="toctree-l1 current">
+        <a class="current" href="./">前端101</a>
+        
+            <ul>
+            
+                <li class="toctree-l3"><a href="#angualr-js">Angualr JS 簡介</a></li>
+                
+                    <li><a class="toctree-l4" href="#http">Http 樣版</a></li>
+                
+            
+            </ul>
+        
+    </li>
+<li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">My Docs</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>前端101</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="angualr-js">Angualr JS 簡介</h1>
+<h2 id="http">Http 樣版</h2>
+<ol>
+<li>建立一個專案資料夾 （ex. C:/Projects/angularDemo)</li>
+<li>用Visual Studio Code (VS Code) "開啟資料夾"</li>
+<li>新增檔案 /index.html</li>
+<li>貼上以下樣版：</li>
+</ol>
+<p>```html=
+&lt;!doctype html&gt;</p>
+<p><html lang="en">
+<head>
+  <meta charset="utf-8"></p>
+<p><title>這是標題</title>
+  <meta name="description" content="The HTML5 Herald">
+  <meta name="wjlin803" content="WD Information"></p>
+<p><!--[if lt IE 9]>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script>
+  <![endif]-->
+</head></p>
+<p><body>
+    <h1> Hello, world</h1>
+</body>
+</html></p>
+<pre><code>
+
+## 架設Local Server 
+1. 安裝 [npm/Node.js](https://nodejs.org/en/)
+我們要用的是 npm 這個javascript 套件管理系統，我們今天只用他提供的http server. 
+直接用網頁中所提供的安裝程式安裝。
+
+2. 用npm 安裝http-server
+打開 &quot;Node.js Command Prompt&quot;，輸入
+~~~
+&gt;npm install http-server -g
+~~~
+-g 代表在這一台電腦上裝這個套件，以後每一個專案都可以用。（有其他安裝方法只會給某一個app 安裝套件，其他app不會受到影響）
+
+安裝完成以後，輸入
+~~~
+&gt;http-server
+~~~
+即可啟動server
+
+3. 用瀏覽器造訪 http://127.0.0.1:8080
+
+## 加入 Angular JS
+:::warning
+心法：先搞清楚網頁怎麼樣可以動，先不要計較為什麼這樣會動。
+:::
+### 用Controller 控制 Html 
+1. 下載 angular.js
+官網：[https://angularjs.org/](https://angularjs.org/)
+下載 Uncompressed 1.x 版，放進 &quot;js/angular.js&quot;
+
+2. 新增檔案 &quot;js/app.js&quot; 
+貼上以下code
+
+```javascript=
+var app = angular.module('myApp', []);
+//  建立一個 angular module, 
+app.controller('myCtrl', ['$scope', function($scope){
+    $scope.name = &quot;Tzu-Yao&quot;;
+    console.log(&quot;Hello, &quot;, $scope.name);
+}])
+</code></pre>
+
+<p>編輯 index.html 的 <code>&lt;body&gt;</code> ：</p>
+<p>```htmlmixed=
+<body ng-app="myApp">
+<h1> Hello, world. </h1>
+<div ng-controller="myCtrl">
+    <h2>我是 {{name}} </h2>
+</div>
+</body></p>
+<pre><code>
+- 在  `myCtrl` 這個controller 中，index.html 中的`{{name}}` 會對應到 app.js 中的 `$scope.name` 
+- `console.log()` 會印出資料到 Chrome console中。 
+
+### 雙向資料綁定
+編輯 index.html 的 `&lt;body&gt;` ：
+```htmlmixed=
+&lt;body ng-app=&quot;myApp&quot;&gt;
+&lt;h1&gt; Hello, world. &lt;/h1&gt;
+&lt;div ng-controller=&quot;myCtrl&quot;&gt;
+    &lt;form&gt;
+        &lt;label for=&quot;myName&quot;&gt;姓名&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;myName&quot; ng-model=&quot;name&quot;&gt;
+    &lt;/form&gt;
+    &lt;h2&gt;我是 {{name}} &lt;/h2&gt;
+&lt;/div&gt;
+&lt;/body&gt;
+</code></pre>
+
+<h3 id="javascript-html">Javascript 物件 ＆ Html 表格</h3>
+<p>編輯 app.js
+```javascript=
+//前略 
+app.controller('myCtrl', ['$scope', function($scope){
+    $scope.name = "Tzu-Yao";
+    console.log("Hello, ", $scope.name);
+    $scope.student = {
+        name : "林子堯",
+        id : 1,
+        score : 100
+    };
+    // $scope.student1 就是一個物件
+}])</p>
+<pre><code>在index.html 中加入
+```htmlmixed=
+&lt;div ng-controller=&quot;myCtrl&quot;&gt;
+    &lt;form&gt;
+        &lt;label for=&quot;myName&quot;&gt;姓名&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;myName&quot; ng-model=&quot;name&quot;&gt;
+    &lt;/form&gt;
+    &lt;h2&gt;我是 {{name}} &lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;th&gt;姓名&lt;/th&gt;
+        &lt;th&gt;學號&lt;/th&gt;
+        &lt;th&gt;分數&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr&gt;
+        &lt;td&gt; {{student.name}} &lt;/td&gt;
+        &lt;td&gt; {{student.id}} &lt;/td&gt;
+        &lt;td&gt; {{student.score}} &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<p>如果有很多個學生（很多objects）呢？
+物件會放進array裡</p>
+<h3 id="array-of-objects">Array of Objects</h3>
+<p>把靜態資料寫在 app.js中
+```javascript=
+//前略 
+app.controller('myCtrl', ['$scope', function($scope){
+    $scope.name = "Tzu-Yao";
+    console.log("Hello, ", $scope.name);
+    $scope.students = [{
+        name : "林子堯",
+        id : 1,
+        score : 100
+    },
+    {
+        name : "John",
+        id : 2,
+        score : 90
+    },
+    {
+        name : "Mary",
+        id : 3,
+        score : 85
+    }];
+}])</p>
+<pre><code>### 用 `ng-repeat` 顯示Array資料
+在index.html中
+```htmlmixed=
+&lt;div ng-controller=&quot;myCtrl&quot;&gt;
+    &lt;form&gt;
+    &lt;label for=&quot;myName&quot;&gt;姓名&lt;/label&gt;
+        &lt;input type=&quot;text&quot; id=&quot;myName&quot; ng-model=&quot;name&quot;&gt;
+    &lt;/form&gt;
+    &lt;h2&gt;我是 {{name}} &lt;/h2&gt;
+    &lt;table&gt;
+      &lt;tr&gt;
+        &lt;th&gt;姓名&lt;/th&gt;
+        &lt;th&gt;學號&lt;/th&gt;
+        &lt;th&gt;分數&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr ng-repeat=&quot;student in students&quot;&gt;
+        &lt;td&gt; {{student.name}} &lt;/td&gt;
+        &lt;td&gt; {{student.id}} &lt;/td&gt;
+        &lt;td&gt; {{student.score}} &lt;/td&gt;
+      &lt;/tr&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+
+</code></pre>
+
+<p>把介面稍微變好看：</p>
+<h3 id="bootstrap">Bootstrap</h3>
+<ol>
+<li>用CDN 載入套件</li>
+<li><a href="https://jquery.com/download/">JQuery</a>
+放在 <code>&lt;body&gt;</code> 中最下面</li>
+</ol>
+<p>```htmlmixed=
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+</body></p>
+<pre><code>
+- [Bootstrap](http://getbootstrap.com/) 
+把css 放在`&lt;head&gt;`最下面
+```htmlmixed=
+&lt;!-- Latest compiled and minified CSS --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css&quot; integrity=&quot;sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u&quot; crossorigin=&quot;anonymous&quot;&gt;
+
+&lt;!-- Optional theme --&gt;
+&lt;link rel=&quot;stylesheet&quot; href=&quot;https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css&quot; integrity=&quot;sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp&quot; crossorigin=&quot;anonymous&quot;&gt;
+
+</code></pre>
+
+<p>把javascript 放在<code>&lt;body&gt;</code>中，JQuery的下面
+```htmlmixed=
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script></p>
+<pre><code>幫`&lt;table&gt;` 加個 class
+```htmlmixed=
+&lt;table class=&quot;table&quot;&gt;
+      &lt;tr&gt;
+        &lt;th&gt;姓名&lt;/th&gt;
+        &lt;th&gt;學號&lt;/th&gt;
+        &lt;th&gt;分數&lt;/th&gt;
+      &lt;/tr&gt;
+      &lt;tr ng-repeat=&quot;student in students&quot;&gt;
+        &lt;td&gt; {{student.name}} &lt;/td&gt;
+        &lt;td&gt; {{student.id}} &lt;/td&gt;
+        &lt;td&gt; {{student.score}} &lt;/td&gt;
+      &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>
+
+<h3 id="api">取得後端資料（呼叫API）</h3>
+<ol>
+<li>
+<p>我們用一個專門給開發者測試用的API
+https://jsonplaceholder.typicode.com/</p>
+</li>
+<li>
+<p>用Postman測試一下，看data長什麼樣子</p>
+</li>
+</ol>
+<pre><code>GET https://jsonplaceholder.typicode.com/users
+</code></pre>
+
+<ol>
+<li>編輯 app.js</li>
+</ol>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../Backend101/" class="btn btn-neutral" title="後端101"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+	  
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+<div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../Backend101/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+    </span>
+</div>
+
+</body>
+</html>
