@@ -106,7 +106,16 @@
     <Compile Include="Migrations\201609030402042_AddDescription.Designer.cs">
       <DependentUpon>201609030402042_AddDescription.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609031957389_AddProductData.cs" />
+    <Compile Include="Migrations\201609031957389_AddProductData.Designer.cs">
+      <DependentUpon>201609031957389_AddProductData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609032018271_AddCustomer.cs" />
+    <Compile Include="Migrations\201609032018271_AddCustomer.Designer.cs">
+      <DependentUpon>201609032018271_AddCustomer.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductsContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -129,6 +138,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609030402042_AddDescription.resx">
       <DependentUpon>201609030402042_AddDescription.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609031957389_AddProductData.resx">
+      <DependentUpon>201609031957389_AddProductData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609032018271_AddCustomer.resx">
+      <DependentUpon>201609032018271_AddCustomer.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

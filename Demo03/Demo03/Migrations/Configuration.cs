@@ -4,14 +4,14 @@ namespace Demo03.Migrations
 {
     using System.Data.Entity.Migrations;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Demo03.Models.ProductsContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Demo03.Models.AppDbContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(Demo03.Models.ProductsContext context)
+        protected override void Seed(Demo03.Models.AppDbContext context)
         {
             var product1 = new Product()
             {

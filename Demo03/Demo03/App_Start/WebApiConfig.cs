@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Http;
+﻿using System.Web.Http;
 
 namespace Demo03
 {
@@ -18,7 +15,7 @@ namespace Demo03
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
-                // ProductsController
+                // 當接收到 uri 含有 api/Products 或 api/products, 就會自動對應到 ProductsController
             );
         }
     }

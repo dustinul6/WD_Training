@@ -7,7 +7,9 @@ namespace Demo03.Controllers
     public class ProductsController : ApiController
     {
         
-        private ProductsContext _context = new ProductsContext(); 
+        private AppDbContext _context = new AppDbContext(); 
+        
+        
         // GET api/Products => []
         public IHttpActionResult GetAllProducts()
         {
