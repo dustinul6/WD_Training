@@ -4,7 +4,7 @@
 目標:能夠接收 Http Get Request, 並回傳JSON
 此階段先不從SQL撈資料，資料直接寫在.NET code 中
 
-1. 新增專案
+### 新增專案
 
 ![NewAspNetProject](img/newproj.png)
 
@@ -14,7 +14,7 @@
 
 選擇Empty Template, 但在加入WebApi Folders and references的地方打勾
 
-2. . ​定義Model
+### ​定義Model
 在.NET 中，所有資料都要對應到一個Type, 例如string, decimal, string[] 等等。
 我們可以定義自己的Type: Class。一個class可以有很多fields, 每一個field 都可以是別的Type
 在.NET中，每個class都有獨立的檔案，檔案名稱盡量跟class名稱相同，方便管理、避免混淆。
@@ -43,7 +43,10 @@ var product = new Product(){
 }
 ```
 
-3. Controller and Router
+### Controller and Routing
+#### Routing 
+參考: http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api
+
 HttpRequest 基本格式 
 ~~~
 GET [路徑(Uri)] HTTP/1.1
@@ -57,17 +60,71 @@ GET api/Products/2 => 回傳 Id是2的Product
 POST api/Products => 新增一個Product
 ~~~
 
-  1. Controller 的功能就在於接收Http Request 並撈取、運算要回傳資料。
-  2. 一個controller 是由好幾個Action 所構成，每個Action 處理一種路徑。  ​
-  3. Routing 就是在決定哪個Uri要導引到哪個Controller的哪個Action 。
+1. Controller 的功能就在於接收Http Request 並撈取、運算要回傳資料。
+2. 一個controller 是由好幾個Action 所構成，每個Action 處理一種Request Method + Uri組合。  ​
+3. Routing 就是在決定一個Request Method + Uri，要對應到哪一個Controller以及哪一個Action。
+4. 路徑可以使用預設規則，或是自訂規則。
 舉例:
+
+打開 AppStart/WebApiConfig.cs 看看routing的設定
+```csharp
+public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        // Web API configuration and services
+
+        // Web API routes
+        config.MapHttpAttributeRoutes();
+
+        config.Routes.MapHttpRoute(
+            name: "DefaultApi",
+            routeTemplate: "api/{controller}/{id}",
+            defaults: new { id = RouteParameter.Optional }
+        );
+    }
+}
+```
+
 在Controller資料夾新增Controller, 選擇Empty Controller, 命名為 "ProductsController"
 ```csharp
 public class ProductsController : ApiController
 {
-    public void GetAllProducts() { }
-    public IEnumerable<Product> GetProductById(int id) { }
+    public IHttpActionResult GetAllProducts() { }
+    public IHttpActionResult GetProductById(int id) { }
     public HttpResponseMessage DeleteProduct(int id){ }
 }
 ```
-在
+以上有三個Actions, 每個Action都是一個function (method)
+依照預設路徑，路徑包含 api/Products都會導引到 ProducstController
+GetAllProducts 要對應到 Get api/Products
+GetProductById 會對應到 Get api/Products/2
+DeleteProduct 會對應到 Post api/Products/2
+
+#### Actions in Controller
+
+1. GetAllProducts
+```csharp
+public IHttpActionResult GetAllProducts()
+{
+    var product1 = new Product()
+    {
+        Id = 1,
+        Name = "Desktop Computer",
+        Price = 100
+    };
+    var product2 = new Product()
+    {
+        Id = 1,
+        Name = "Laptop Computer",
+        Price = 150
+    };
+
+    var products = new List<Product>()
+    {
+        product1,
+        product2
+    };
+    return Ok(products);
+}
+```
