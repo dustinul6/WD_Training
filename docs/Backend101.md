@@ -7,14 +7,67 @@
 1. 新增專案
 
 ![NewAspNetProject](img/newproj.png)
+
 選擇新增ASP.NET Web Application
+
 ![alt](img/EmptyApi.png)
+
 選擇Empty Template, 但在加入WebApi Folders and references的地方打勾
-2. 
 
-
-3. ​定義Model
+2. . ​定義Model
 在.NET 中，所有資料都要對應到一個Type, 例如string, decimal, string[] 等等。
-我們可以定義自己的Type: Class
+我們可以定義自己的Type: Class。一個class可以有很多fields, 每一個field 都可以是別的Type
+在.NET中，每個class都有獨立的檔案，檔案名稱盡量跟class名稱相同，方便管理、避免混淆。
+在 Solution Manager 中 Model 點右鍵，新增Class。命名為"Product"，並貼上以下Code
 
-3. ​
+```csharp
+namespace Demo02.Models
+{
+    public class Product
+    {
+        public string Name { get; set; }
+        public int Id { get; set; }
+        public decimal Price { get; set; }
+    }
+}
+```
+這個動作相當於定義了所有物件的結構，以後每創建一個Product物件，都會有上面三個屬性。
+未來當我們需要創立一個新的物件(instance)，並assign給一個local variable 時，可用以下語法:
+
+
+```csharp
+var product = new Product(){
+    Id = 1,
+    Name = "Computer",
+    Price = 100
+}
+```
+
+3. Controller and Router
+HttpRequest 基本格式 
+~~~
+GET [路徑(Uri)] HTTP/1.1
+Host: http://www.wdmis.com/
+~~~
+
+我們希望透過指定不同的路徑，可以跟伺服器要到不同的資料
+~~~
+GET api/Products => 回傳所有Products
+GET api/Products/2 => 回傳 Id是2的Product
+POST api/Products => 新增一個Product
+~~~
+
+  1. Controller 的功能就在於接收Http Request 並撈取、運算要回傳資料。
+  2. 一個controller 是由好幾個Action 所構成，每個Action 處理一種路徑。  ​
+  3. Routing 就是在決定哪個Uri要導引到哪個Controller的哪個Action 。
+舉例:
+在Controller資料夾新增Controller, 選擇Empty Controller, 命名為 "ProductsController"
+```csharp
+public class ProductsController : ApiController
+{
+    public void GetAllProducts() { }
+    public IEnumerable<Product> GetProductById(int id) { }
+    public HttpResponseMessage DeleteProduct(int id){ }
+}
+```
+在
