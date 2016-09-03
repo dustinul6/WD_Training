@@ -51,7 +51,11 @@
  }
 
  body {
-     font-family: 'Noto Sans TC'
+     font-family: 'Noto Sans TC';
+     font-size: 14pt;
+     font-weight: 300;
+    line-height: 2
+
  }
 
  h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
