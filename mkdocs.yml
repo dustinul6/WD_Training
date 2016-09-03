@@ -6,3 +6,4 @@ pages:
    
 
 theme: yeti
+extra_css: ['mystyle.css'] 
