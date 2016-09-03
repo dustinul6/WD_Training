@@ -1,7 +1,7 @@
 site_name: My Docs
 pages:
     - 'Introduction': 'index.md'
-    - '後端101': 'Backend101.md'
+    - '後端101': ['Backend101.md', 'EntityFramework.md']
     - '前端101': 'frontend101.md'
    
 
