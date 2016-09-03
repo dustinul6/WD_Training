@@ -260,6 +260,16 @@ DeleteProduct 會對應到 Post api/Products/2</p>
 </ol>
 <h4 id="test-with-postman">Test with Postman</h4>
 <h2 id="entity-framework">與資料庫連結 Entity Framework</h2>
+<h3 id="model-sql-database">Model 與 SQL database 的對應</h3>
+<ol>
+<li>一個Class對應到一個SQL Table</li>
+<li>一個實體(Instance) 對應到一筆資料(row)</li>
+<li>一個 property 對應到一個 SQL 欄位</li>
+</ol>
+<p>用 DbContext 來建立對應關係，並且在Runtime中去query database</p>
+<h3 id="codefirst-migration">CodeFirst Migration</h3>
+<p>我只要維護 .NET code, EF 自動幫我產生Sql code, 調整 Database schema</p>
+<h3 id="_3"></h3>
               
             </div>
           </div>
