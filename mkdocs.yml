@@ -5,4 +5,4 @@ pages:
     - '前端101': 'frontend101.md'
    
 
-theme: readthedocs
+theme: yeti

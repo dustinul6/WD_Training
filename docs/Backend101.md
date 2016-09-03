@@ -160,6 +160,28 @@ public IHttpActionResult GetProductById(int id)
 
 用 DbContext 來建立對應關係，並且在Runtime中去query database
 
+1. 新增資料庫:在SQL management studio 新增資料庫，命名 "Demo3"
+2. 取得資料庫 connection string: 
+    1. 在 Visual Studio中，Tools/Connect to Database 指定要連線的資料庫。
+    2. 在左側的 Server Explorer 中，選取該資料庫，按右鍵選Properties, 即可檢視 connection string
+3. 把connection string 存在 Web.config 中
+```xml 
+<configuration>
+  <configSections>
+    ...
+  </configSections>
+  //以下新增:
+  <connectionStrings>
+    <add name="ProductsContext" connectionString="Data Source=TzuYaoPC;Initial Catalog=Demo3;Persist Security Info=True;User ID=username;Password=xxxx"
+      providerName="System.Data.SqlClient" />
+  </connectionStrings>
+  ...
+```
+
+4. 建立 ProductsDbContext, 繼承 DbContext
+
+
+
 ### CodeFirst Migration 
 我只要維護 .NET code, EF 自動幫我產生Sql code, 調整 Database schema
 
