@@ -6,7 +6,7 @@
 3. 新增檔案 /index.html
 4. 貼上以下樣版：
 
-```html=
+```html
 <!doctype html>
 
 <html lang="en">
@@ -61,7 +61,7 @@
 2. 新增檔案 "js/app.js" 
 貼上以下code
 
-```javascript=
+```javascript
 var app = angular.module('myApp', []);
 //  建立一個 angular module, 
 app.controller('myCtrl', ['$scope', function($scope){
@@ -71,7 +71,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 ```
 編輯 index.html 的 `<body>` ：
 
-```htmlmixed=
+```html
 <body ng-app="myApp">
 <h1> Hello, world. </h1>
 <div ng-controller="myCtrl">
@@ -85,7 +85,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 
 ### 雙向資料綁定
 編輯 index.html 的 `<body>` ：
-```htmlmixed=
+```html
 <body ng-app="myApp">
 <h1> Hello, world. </h1>
 <div ng-controller="myCtrl">
@@ -100,7 +100,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 
 ### Javascript 物件 ＆ Html 表格
 編輯 app.js
-```javascript=
+```javascript
 //前略 
 app.controller('myCtrl', ['$scope', function($scope){
 	$scope.name = "Tzu-Yao";
@@ -114,7 +114,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 }])
 ```
 在index.html 中加入
-```htmlmixed=
+```htmlmixed
 <div ng-controller="myCtrl">
 	<form>
 		<label for="myName">姓名</label>
@@ -141,7 +141,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 
 ### Array of Objects 
 把靜態資料寫在 app.js中
-```javascript=
+```javascript
 //前略 
 app.controller('myCtrl', ['$scope', function($scope){
 	$scope.name = "Tzu-Yao";
@@ -165,7 +165,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 ```
 ### 用 `ng-repeat` 顯示Array資料
 在index.html中
-```htmlmixed=
+```html
 <div ng-controller="myCtrl">
 	<form>
 	<label for="myName">姓名</label>
@@ -195,14 +195,14 @@ app.controller('myCtrl', ['$scope', function($scope){
 - [JQuery](https://jquery.com/download/)
 放在 `<body>` 中最下面
 
-```htmlmixed=
+```html
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 </body>
 ```
 
 - [Bootstrap](http://getbootstrap.com/) 
 把css 放在`<head>`最下面
-```htmlmixed=
+```html
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -211,12 +211,12 @@ app.controller('myCtrl', ['$scope', function($scope){
 
 ```
 把javascript 放在`<body>`中，JQuery的下面
-```htmlmixed=
+```html
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 ```
 幫`<table>` 加個 class
-```htmlmixed=
+```html
 <table class="table">
       <tr>
         <th>姓名</th>
