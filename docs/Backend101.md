@@ -104,6 +104,7 @@ DeleteProduct 會對應到 Post api/Products/2
 #### Actions in Controller
 
 1. GetAllProducts
+編輯第一個Action，新增兩個Product 實體，存到一個list中，回傳整個list。WebApi會自動幫我們把資料用JSON 格式回傳出去。
 ```csharp
 public IHttpActionResult GetAllProducts()
 {
@@ -128,3 +129,27 @@ public IHttpActionResult GetAllProducts()
     return Ok(products);
 }
 ```
+2. GetProductById
+```csharp
+public IHttpActionResult GetProductById(int id)
+{
+    if (id == 1)
+    {
+        return Ok(new Product()
+        {
+            Id = 1,
+            Name = "Desk",
+            Price = 0
+        });
+    }
+    return NotFound();
+}
+``` 
+#### Build 
+1. F5 : 啟動Debug Mode, 可設定 break points, 但debug狀態下不能編輯。在游標所在的位置按下F9可設定斷點。
+2. Ctrl + F5 : 啟動伺服器，伺服器啟動的狀態下，可編輯，並且可用 Crtl + B重新 Build並馬上測試結果。但無法設break points
+
+#### Test with Postman
+
+## 與資料庫連結 Entity Framework
+
