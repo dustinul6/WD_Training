@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        
+        
+        
+        <link rel="shortcut icon" href="../img/favicon.ico">
+
+	<title>EntityFramework - My Docs</title>
+
+        <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
+        <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
+        <link rel="stylesheet" href="../css/highlight.css">
+        <link href="../css/base.css" rel="stylesheet">
+        <link href="../mystyle.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+            <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
+        <![endif]-->
+
+        
+    </head>
+
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+    <div class="container">
+
+        <!-- Collapsed navigation -->
+        <div class="navbar-header">
+            <!-- Expander button -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+
+            <!-- Main title -->
+            <a class="navbar-brand" href="..">My Docs</a>
+        </div>
+
+        <!-- Expanded navigation -->
+        <div class="navbar-collapse collapse">
+            <!-- Main navigation -->
+            <ul class="nav navbar-nav">
+            
+            
+                <li >
+                    <a href="..">Introduction</a>
+                </li>
+            
+            
+            
+                <li class="dropdown active">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">後端101 <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                    
+                        
+<li >
+    <a href="../Backend101/">Backend101</a>
+</li>
+
+                    
+                        
+<li class="active">
+    <a href="./">EntityFramework</a>
+</li>
+
+                    
+                    </ul>
+                </li>
+            
+            
+            
+                <li >
+                    <a href="../frontend101/">前端101</a>
+                </li>
+            
+            
+            </ul>
+
+            <!-- Search, Navigation and Repo links -->
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#" data-toggle="modal" data-target="#mkdocs_search_modal">
+                        <i class="fa fa-search"></i> Search
+                    </a>
+                </li>
+                <li >
+                    <a rel="next" href="../Backend101/">
+                        <i class="fa fa-arrow-left"></i> Previous
+                    </a>
+                </li>
+                <li >
+                    <a rel="prev" href="../frontend101/">
+                        Next <i class="fa fa-arrow-right"></i>
+                    </a>
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+        <div class="container">
+            <div class="col-md-3"><div class="bs-sidebar hidden-print affix well" role="complementary">
+    <ul class="nav bs-sidenav">
+    
+        <li class="main active"><a href="#model-entity-framework">Model 與資料庫的連結 - Entity Framework</a></li>
+        
+            <li><a href="#model-sql-database">Model 與 SQL database 的對應</a></li>
+        
+            <li><a href="#dbcontext">建立 DbContext ，註冊對應關係</a></li>
+        
+            <li><a href="#codefirst-migration-model">CodeFirst Migration 讓 Model 與資料庫同步</a></li>
+        
+            <li><a href="#_1">更新資料庫</a></li>
+        
+            <li><a href="#model-migration-">工作流程: 修改Model -&gt; 新增Migration -&gt; 更新資料庫</a></li>
+        
+            <li><a href="#dbcontext-model">只有在 DbContext 註冊的 Model 才會跟資料庫同步</a></li>
+        
+            <li><a href="#_2">在資料庫中新增資料</a></li>
+        
+            <li><a href="#controller">在 Controller 中存取資料庫</a></li>
+        
+    
+    </ul>
+</div></div>
+            <div class="col-md-9" role="main">
+
+<h1 id="model-entity-framework">Model 與資料庫的連結 - Entity Framework</h1>
+<h2 id="model-sql-database">Model 與 SQL database 的對應</h2>
+<ol>
+<li>一個Class對應到一個SQL Table</li>
+<li>一個實體(Instance) 對應到一筆資料(row)</li>
+<li>一個 property 對應到一個 SQL 欄位</li>
+</ol>
+<p>用 DbContext 來建立對應關係，並且在Runtime中去query database</p>
+<h3 id="entity-framework">安裝 Entity Framework 套件:</h3>
+<ol>
+<li>打開 Tools/Nuget Package Manager/Package Manager Console </li>
+<li>執行以下指令 </li>
+</ol>
+<pre><code>&gt;Install-Package EntityFramework
+</code></pre>
+
+<h3 id="connection-stringwebconfig">建立資料庫，並把Connection string放在Web.config中</h3>
+<ol>
+<li>新增資料庫:在SQL management studio 新增資料庫，命名 "Demo3"</li>
+<li>取得資料庫 connection string: <ol>
+<li>在 Visual Studio中，Tools/Connect to Database 指定要連線的資料庫。</li>
+<li>在左側的 Server Explorer 中，選取該資料庫，按右鍵選Properties, 即可檢視 connection string</li>
+</ol>
+</li>
+<li>把connection string 存在 Web.config 中，命名為 "demo3connection"</li>
+</ol>
+<pre><code class="xml">...
+&lt;configuration&gt;
+  &lt;configSections&gt;
+    ...
+  &lt;/configSections&gt;
+  //以下新增:
+  &lt;connectionStrings&gt;
+    &lt;add name=&quot;deomo3connection&quot; connectionString=&quot;Data Source=TzuYaoPC;Initial Catalog=Demo3;Persist Security Info=True;User ID=username;Password=xxxx&quot;
+      providerName=&quot;System.Data.SqlClient&quot; /&gt;
+  &lt;/connectionStrings&gt;
+  ...
+&lt;/configuration&gt;
+</code></pre>
+
+<h2 id="dbcontext">建立 DbContext ，註冊對應關係</h2>
+<p>在 Model 資料夾新增一個Class, 命名為AppDbContext (資料夾上按右鍵-&gt;Add-&gt;Class)
+貼上以下Code</p>
+<pre><code class="csharp">using System.Data.Entity;
+
+namespace Demo03.Models
+{
+    public class ProductsContext : DbContext
+    {
+        // 指定Connection string
+        public ProductsContext()
+            :base(&quot;name=demo3connection&quot;)
+        {    
+        }
+
+        public DbSet&lt;Product&gt; Products { get; set; }
+    }
+}
+</code></pre>
+
+<ul>
+<li>在 <code>:base()</code> 中指定 <code>"name=demo3connection"</code> 會讓 EF 去讀取Web.config 中 <connectionStrings> 裡面 <code>name="deomo3connection"</code>的 connection string. </li>
+<li>在AppDbContext 中新增 <code>DbSet&lt;Type&gt;</code> 的field, 就是在告訴Entity Framework 我要把我指定的 <code>Type</code> 跟Database中的一個table做連結。</li>
+</ul>
+<h2 id="codefirst-migration-model">CodeFirst Migration 讓 Model 與資料庫同步</h2>
+<p>因為我們要維護 Model 與 database table 的對應關係，理論上來說，Model 一但有修訂，database也要跟著修訂。EF CodeFirst的意思就是，要我們專心維護Model中的Code, 資料庫的更新他們幫我們處理。
+當我們做出一點點Model的變動，就可以新增一個Migration, 讓EF 自動幫我產生Sql code, 調整 Database schema。
+EF 也會追蹤資料庫的更新進度，並且能容許我們取消某幾次的資料庫更新，把資料庫回復到前幾次Migration前的狀態。</p>
+<p>要開啟這項功能，在 Package Manager Console 中輸入</p>
+<pre><code>&gt;Enable-Migrations
+</code></pre>
+
+<p>這個指令每個app只需要做一次。此時注意 Solution Manager, EF 幫我們新增了一個資料夾叫做 Migrations。
+這個資料夾會去紀錄每一次Migration 時，我們的Model 長什麼樣子，資料庫長什麼樣子，並且對資料庫做出甚麼變更。</p>
+<p>接著，我們建立我們第一個Migration, 命名為'InitialMigration'</p>
+<pre><code>&gt;Add-Migration 'InitialMigration'
+</code></pre>
+
+<p>這時，EF已經幫我們建立了第一個Migration file, 我們可以檢視它產生的 C# code, </p>
+<pre><code class="csharp">namespace Demo03.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+
+    public partial class InitialMigration : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                &quot;dbo.Products&quot;,
+                c =&gt; new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                    })
+                .PrimaryKey(t =&gt; t.Id);
+
+        }
+
+        public override void Down()
+        {
+            DropTable(&quot;dbo.Products&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p><code>Up()</code> 與 <code>Down()</code> 都是EF 調整資料庫的計畫，先把計畫呈報給我們看。</p>
+<p><code>Up()</code> Method 做的事情是，EF 先去比較現在的Model 跟上次更新時的Model 有哪些變更，經過計算以後寫出C# code 告訴我們她計畫怎麼去更新資料庫。
+因為我們現在資料庫是空的，但我們有一個Model 已經跟 DbContext 註冊需要建立與資料庫的連結，所以他幫我們建立一個能對應到 Product 的Table。</p>
+<p><code>Down()</code> Method 做的是，當我們哪天後悔這次的變更，想要把資料庫回復到更新前的狀態，就會執行 <code>Down()</code> Method 。以我們現在的例子，就是直接把這個Table 拿掉。</p>
+<h2 id="_1">更新資料庫</h2>
+<p>當我們看一看覺得沒問題，跟預想中的一樣，就可以請EF幫我們按照計畫( 'Up()`) 更新資料庫。在 Package Manager Console 中執行</p>
+<pre><code>&gt;Update-Database
+</code></pre>
+
+<p>如果我們好奇他到底用了哪些SQL code, 或是希望手動執行SQL code, 我們可以增加 <code>-Script</code> 選項:</p>
+<pre><code>&gt;Updata-Database -Script
+</code></pre>
+
+<p>這時他會產生一個SQL code, 但不會幫我們執行，我們可以檢視以後手動選取connection去執行。</p>
+<h2 id="model-migration-">工作流程: 修改Model -&gt; 新增Migration -&gt; 更新資料庫</h2>
+<p>我們來測試一下，當Model 有異動時，能不能被EF 偵測到。
+打開 Product.cs, 新增一個 string field, 命名Description</p>
+<pre><code class="csharp">public class Product
+{
+    public int Id { get; set; }
+    public string Name { get; set; }
+    public decimal Price { get; set; }
+    // 以下是新增
+    public string Description { get; set; }
+}
+</code></pre>
+
+<p>在 Package management console 中輸入</p>
+<pre><code>&gt;Add-Migration 'AddDescription'
+</code></pre>
+
+<p>此時EF 幫我們產生的migraiton file 會長這樣，</p>
+<pre><code class="csharp">namespace Demo03.Migrations
+{
+    using System.Data.Entity.Migrations;
+
+    public partial class AddDescription : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn(&quot;dbo.Products&quot;, &quot;Description&quot;, c =&gt; c.String());
+        }
+
+        public override void Down()
+        {
+            DropColumn(&quot;dbo.Products&quot;, &quot;Description&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p>可見EF有抓到 Model 的變更，並且計畫幫我們在 Products 這個Table 新增 Description 這個欄位。</p>
+<h2 id="dbcontext-model">只有在 DbContext 註冊的 Model 才會跟資料庫同步</h2>
+<p>我們可以稍微做個對照，在Model 資料夾新增一個 Class, 命名為 "Customers.cs", 新增以下code</p>
+<pre><code class="csharp">namespace Demo03.Models
+{
+    public class Customer
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+    }
+}
+</code></pre>
+
+<p>請注意，這時我們並<strong>沒有</strong>將 Customer 這個 Model 向 AppDbContext 註冊，所以 EF 不應該偵測到這個Model 的新增與異動，當我們 Add-Migraion, 不應該幫我們在資料庫中建立 Customer Table。讓我們試試看:</p>
+<pre><code>&gt;Add-Migration 'AddCustomer'
+</code></pre>
+
+<p>此時應該產生一個空的 Migration file:</p>
+<pre><code class="csharp">namespace Demo03.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+
+    public partial class AddCustomer : DbMigration
+    {
+        public override void Up()
+        {
+        }
+
+        public override void Down()
+        {
+        }
+    }
+}
+</code></pre>
+
+<p>但是如果我們把這個Model 新增到 AppDbContext.cs 中，</p>
+<pre><code class="csharp">public class AppDbContext : DbContext
+{
+    ...前略
+    public DbSet&lt;Product&gt; Products { get; set; }
+    // 以下是新增
+    public DbSet&lt;Customer&gt; Customers { get; set; }
+
+}
+</code></pre>
+
+<p>再執行一次 Add-Migration，但由於原本的Migration 已經存在，且還沒有套用到資料庫上，此時EF會不讓我們新增Midgration。 所以我們可以加上 '-force' 選項在指令中，複寫原本產生的migration file </p>
+<pre><code>&gt;Add-Migration 'AddCustomer' -force
+</code></pre>
+
+<p>現在，產生的 Migration file 應該要長這樣:</p>
+<pre><code class="csharp">namespace Demo03.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+
+    public partial class AddCustomer : DbMigration
+    {
+        public override void Up()
+        {
+            CreateTable(
+                &quot;dbo.Customers&quot;,
+                c =&gt; new
+                    {
+                        Id = c.Int(nullable: false, identity: true),
+                        Name = c.String(),
+                    })
+                .PrimaryKey(t =&gt; t.Id);
+
+        }
+
+        public override void Down()
+        {
+            DropTable(&quot;dbo.Customers&quot;);
+        }
+    }
+}
+
+</code></pre>
+
+<p>沒問題的話，請執行Update-Database</p>
+<pre><code>&gt;Update-Database
+</code></pre>
+
+<h2 id="_2">在資料庫中新增資料</h2>
+<p>EF 提供我們幾種新增資料進資料庫的方法
+1. Seed Method</p>
+<p>打開 Migrations/Configurations.cs, 在 <code>Seed(...){}</code> method 中可以新增以下代碼:</p>
+<pre><code class="csharp">protected override void Seed(Demo03.Models.AppDbContext context)
+{
+    var product1 = new Product()
+    {
+        Id = 1,
+        Name = &quot;Computer&quot;,
+        Price = 200,
+        Description = &quot;Good product&quot;
+    };
+    var product2 = new Product()
+    {
+        Id = 2,
+        Name = &quot;Laptop&quot;,
+        Price = 150,
+        Description = &quot;Wonderful!!&quot;
+    };
+
+    context.Products.AddOrUpdate(product1, product2);
+
+}
+</code></pre>
+
+<ul>
+<li>EF 幫我們Updata Database時，套用完 Migrations 之後，會幫我們建立一個 AppDbContext 實體，並且丟進 Seed method 中，叫做 <code>context</code>，所以我們可以透過context 來存取資料庫裡的內容。</li>
+<li>
+<p><code>context.Products</code> 指向 Products這個 field, 類別(Type)是 <code>DbSet&lt;Product&gt;</code>, 這個Type 有一個內建的 Method, <code>AddOrUpdate()</code> 把要新增的物件放進去，就可以幫我們在資料庫新增 record. </p>
+</li>
+<li>
+<p>在Migration 中手動增加SQL 指令</p>
+</li>
+</ul>
+<p>在 Updata-Database 之後，還沒有變更Model的情況下，新增一個空白 Migration，  </p>
+<pre><code>&gt;Add-Migration 'AddProductData'
+</code></pre>
+
+<p>這時我們看到的Migraiotn file 中，<code>Up()</code> 跟 <code>Down()</code> 應該都是空白的。我們可以手動新增SQL 指令:</p>
+<pre><code class="csharp">namespace Demo03.Migrations
+{
+    using System.Data.Entity.Migrations;
+
+    public partial class AddProductData : DbMigration
+    {
+        public override void Up()
+        {
+            Sql(&quot;INSERT INTO Products (Name, Price) VALUES ('Monitor', '250')&quot;);
+            Sql(&quot;INSERT INTO Products (Name, Price) VALUES ('Cell Phone', '300')&quot;);
+        }
+
+        public override void Down()
+        {
+            Sql(&quot;DELETE FROM Products WHERE Name='Monitor'&quot;);
+            Sql(&quot;DELETE FROM Products WHERE Name='Cell Phone'&quot;);
+        }
+    }
+}
+</code></pre>
+
+<p>並執行</p>
+<pre><code>&gt;Update-Database
+</code></pre>
+
+<p>這時，Id 因為是 Primary Key, SQL 會自動幫我們產生。</p>
+<h2 id="controller">在 Controller 中存取資料庫</h2>
+<p>打開ProductsController, 做以下修改</p>
+<pre><code class="csharp">public class ProductsController : ODataController
+{
+    // 主要需要以下這行:
+    // 因為要讓Controller 中各個Actions都能存取資料庫，我們必須在ProductsController中加入一個 field 儲存 AppDbContext 。
+    private AppDbContext _context = new AppDbContext();
+
+    // 以下兩個Method 先複製過去，先不用搞懂他們在幹嘛。
+    private bool ProductExists(int key)
+    {
+        return _context.Products.Any(p =&gt; p.Id == key);
+    } 
+    protected override void Dispose(bool disposing)
+    {
+        _context.Dispose();
+        base.Dispose(disposing);
+    }
+
+    // Action:  
+    // 接收 GET api/Products =&gt; 回傳所有 Products
+    public IHttpActionResult GetAllProducts()
+    {
+        //把 product1, product2 刪掉，productlist直接透過 AppDbContext 從資料庫裡叫。
+        var productlist = _context.Products;
+        return Ok(productlist);
+    }
+}
+</code></pre>
+
+<p>此時可以按 Ctrl + F5 執行程式
+並在 Postman 中測試 GET api/Products </p>
+<p><img alt="Postman" src="../img/postman.png" /></p></div>
+        </div>
+
+        <footer class="col-md-12">
+            <hr>
+            
+            <center>Documentation built with <a href="http://www.mkdocs.org/">MkDocs</a>.</center>
+        </footer>
+
+        <script src="../js/jquery-1.10.2.min.js"></script>
+        <script src="../js/bootstrap-3.0.3.min.js"></script>
+        <script src="../js/highlight.pack.js"></script>
+        <script>var base_url = '..';</script>
+        <script data-main="../mkdocs/js/search.js" src="../mkdocs/js/require.js"></script>
+        <script src="../js/base.js"></script>
+
+        <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="Search Modal" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                        <h4 class="modal-title" id="exampleModalLabel">Search</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>
+                            From here you can search these documents. Enter
+                            your search terms below.
+                        </p>
+                        <form role="form">
+                            <div class="form-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="mkdocs-search-query">
+                            </div>
+                        </form>
+                        <div id="mkdocs-search-results"></div>
+                    </div>
+                    <div class="modal-footer">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
