@@ -114,7 +114,7 @@ app.controller('myCtrl', ['$scope', function($scope){
 }])
 ```
 在index.html 中加入
-```htmlmixed
+```html
 <div ng-controller="myCtrl">
 	<form>
 		<label for="myName">姓名</label>
