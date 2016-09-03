@@ -120,20 +120,16 @@
 <h2 id="api">建立簡單的Api (無資料庫)</h2>
 <p>目標:能夠接收 Http Get Request, 並回傳JSON
 此階段先不從SQL撈資料，資料直接寫在.NET code 中</p>
-<ol>
-<li>新增專案</li>
-</ol>
+<h3 id="_2">新增專案</h3>
 <p><img alt="NewAspNetProject" src="../img/newproj.png" /></p>
 <p>選擇新增ASP.NET Web Application</p>
 <p><img alt="alt" src="../img/EmptyApi.png" /></p>
 <p>選擇Empty Template, 但在加入WebApi Folders and references的地方打勾</p>
-<ol>
-<li>. ​定義Model
-在.NET 中，所有資料都要對應到一個Type, 例如string, decimal, string[] 等等。
+<h3 id="model">​定義Model</h3>
+<p>在.NET 中，所有資料都要對應到一個Type, 例如string, decimal, string[] 等等。
 我們可以定義自己的Type: Class。一個class可以有很多fields, 每一個field 都可以是別的Type
 在.NET中，每個class都有獨立的檔案，檔案名稱盡量跟class名稱相同，方便管理、避免混淆。
-在 Solution Manager 中 Model 點右鍵，新增Class。命名為"Product"，並貼上以下Code</li>
-</ol>
+在 Solution Manager 中 Model 點右鍵，新增Class。命名為"Product"，並貼上以下Code</p>
 <pre><code class="csharp">namespace Demo02.Models
 {
     public class Product
@@ -154,10 +150,10 @@
 }
 </code></pre>
 
-<ol>
-<li>Controller and Router
-HttpRequest 基本格式 </li>
-</ol>
+<h3 id="controller-and-routing">Controller and Routing</h3>
+<h4 id="routing">Routing</h4>
+<p>參考: http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api</p>
+<p>HttpRequest 基本格式 </p>
 <pre><code>GET [路徑(Uri)] HTTP/1.1
 Host: http://www.wdmis.com/
 </code></pre>
@@ -170,20 +166,71 @@ POST api/Products =&gt; 新增一個Product
 
 <ol>
 <li>Controller 的功能就在於接收Http Request 並撈取、運算要回傳資料。</li>
-<li>一個controller 是由好幾個Action 所構成，每個Action 處理一種路徑。  ​</li>
-<li>Routing 就是在決定哪個Uri要導引到哪個Controller的哪個Action 。
-舉例:
-在Controller資料夾新增Controller, 選擇Empty Controller, 命名為 "ProductsController"</li>
+<li>一個controller 是由好幾個Action 所構成，每個Action 處理一種Request Method + Uri組合。  ​</li>
+<li>Routing 就是在決定一個Request Method + Uri，要對應到哪一個Controller以及哪一個Action。</li>
+<li>路徑可以使用預設規則，或是自訂規則。
+舉例:</li>
 </ol>
+<p>打開 AppStart/WebApiConfig.cs 看看routing的設定</p>
+<pre><code class="csharp">public static class WebApiConfig
+{
+    public static void Register(HttpConfiguration config)
+    {
+        // Web API configuration and services
+
+        // Web API routes
+        config.MapHttpAttributeRoutes();
+
+        config.Routes.MapHttpRoute(
+            name: &quot;DefaultApi&quot;,
+            routeTemplate: &quot;api/{controller}/{id}&quot;,
+            defaults: new { id = RouteParameter.Optional }
+        );
+    }
+}
+</code></pre>
+
+<p>在Controller資料夾新增Controller, 選擇Empty Controller, 命名為 "ProductsController"</p>
 <pre><code class="csharp">public class ProductsController : ApiController
 {
-    public void GetAllProducts() { }
-    public IEnumerable&lt;Product&gt; GetProductById(int id) { }
+    public IHttpActionResult GetAllProducts() { }
+    public IHttpActionResult GetProductById(int id) { }
     public HttpResponseMessage DeleteProduct(int id){ }
 }
 </code></pre>
 
-<p>在</p>
+<p>以上有三個Actions, 每個Action都是一個function (method)
+依照預設路徑，路徑包含 api/Products都會導引到 ProducstController
+GetAllProducts 要對應到 Get api/Products
+GetProductById 會對應到 Get api/Products/2
+DeleteProduct 會對應到 Post api/Products/2</p>
+<h4 id="actions-in-controller">Actions in Controller</h4>
+<ol>
+<li>GetAllProducts</li>
+</ol>
+<pre><code class="csharp">public IHttpActionResult GetAllProducts()
+{
+    var product1 = new Product()
+    {
+        Id = 1,
+        Name = &quot;Desktop Computer&quot;,
+        Price = 100
+    };
+    var product2 = new Product()
+    {
+        Id = 1,
+        Name = &quot;Laptop Computer&quot;,
+        Price = 150
+    };
+
+    var products = new List&lt;Product&gt;()
+    {
+        product1,
+        product2
+    };
+    return Ok(products);
+}
+</code></pre>
               
             </div>
           </div>
