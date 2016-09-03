@@ -49,3 +49,7 @@
         url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.woff) format('woff'),
         url(//fonts.gstatic.com/ea/notosanstc/v1/NotoSansTC-Black.otf) format('opentype');
  }
+
+ body {
+     font-family: 'Noto Sans TC'
+ }
