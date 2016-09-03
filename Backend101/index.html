@@ -71,6 +71,8 @@
                 
                     <li><a class="toctree-l4" href="#api">建立簡單的Api (無資料庫)</a></li>
                 
+                    <li><a class="toctree-l4" href="#entity-framework">與資料庫連結 Entity Framework</a></li>
+                
             
             </ul>
         
@@ -206,7 +208,8 @@ GetProductById 會對應到 Get api/Products/2
 DeleteProduct 會對應到 Post api/Products/2</p>
 <h4 id="actions-in-controller">Actions in Controller</h4>
 <ol>
-<li>GetAllProducts</li>
+<li>GetAllProducts
+編輯第一個Action，新增兩個Product 實體，存到一個list中，回傳整個list。WebApi會自動幫我們把資料用JSON 格式回傳出去。</li>
 </ol>
 <pre><code class="csharp">public IHttpActionResult GetAllProducts()
 {
@@ -231,6 +234,32 @@ DeleteProduct 會對應到 Post api/Products/2</p>
     return Ok(products);
 }
 </code></pre>
+
+<ol>
+<li>GetProductById</li>
+</ol>
+<pre><code class="csharp">public IHttpActionResult GetProductById(int id)
+{
+    if (id == 1)
+    {
+        return Ok(new Product()
+        {
+            Id = 1,
+            Name = &quot;Desk&quot;,
+            Price = 0
+        });
+    }
+    return NotFound();
+}
+</code></pre>
+
+<h4 id="build">Build</h4>
+<ol>
+<li>F5 : 啟動Debug Mode, 可設定 break points, 但debug狀態下不能編輯。在游標所在的位置按下F9可設定斷點。</li>
+<li>Ctrl + F5 : 啟動伺服器，伺服器啟動的狀態下，可編輯，並且可用 Crtl + B重新 Build並馬上測試結果。但無法設break points</li>
+</ol>
+<h4 id="test-with-postman">Test with Postman</h4>
+<h2 id="entity-framework">與資料庫連結 Entity Framework</h2>
               
             </div>
           </div>
