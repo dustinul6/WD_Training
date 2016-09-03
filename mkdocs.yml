@@ -5,5 +5,5 @@ pages:
     - '前端101': 'frontend101.md'
    
 
-theme: yeti
+theme: cosmo
 extra_css: ['mystyle.css'] 
