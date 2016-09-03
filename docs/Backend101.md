@@ -153,3 +153,14 @@ public IHttpActionResult GetProductById(int id)
 
 ## 與資料庫連結 Entity Framework
 
+### Model 與 SQL database 的對應
+1. 一個Class對應到一個SQL Table
+2. 一個實體(Instance) 對應到一筆資料(row)
+3. 一個 property 對應到一個 SQL 欄位
+
+用 DbContext 來建立對應關係，並且在Runtime中去query database
+
+### CodeFirst Migration 
+我只要維護 .NET code, EF 自動幫我產生Sql code, 調整 Database schema
+
+### 
