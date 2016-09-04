@@ -1,8 +1,10 @@
 site_name: My Docs
 pages:
     - 'Introduction': 'index.md'
-    - '後端101': ['Backend101.md', 'EntityFramework.md']
-    - '前端101': 'frontend101.md'
+    - '後端 API': 
+        - '01: Model and Controller': 'ModelController.md'
+        - '02: Entity Framework' : 'EntityFramework.md'
+    - '前端 UI': 'frontend101.md'
    
 
 theme: cosmo

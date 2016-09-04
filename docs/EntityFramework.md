@@ -1,12 +1,12 @@
 # Model 與資料庫的連結 - Entity Framework
 
 ## Model 與 SQL database 的對應
+
 1. 一個Class對應到一個SQL Table
 2. 一個實體(Instance) 對應到一筆資料(row)
 3. 一個 property 對應到一個 SQL 欄位
 
 用 DbContext 來建立對應關係，並且在Runtime中去query database
-
 
 ###  安裝 Entity Framework 套件:
 
@@ -37,6 +37,7 @@
   ...
 </configuration>
 ```
+
 ## 建立 DbContext ，註冊對應關係
 
 在 Model 資料夾新增一個Class, 命名為AppDbContext (資料夾上按右鍵->Add->Class)
