@@ -9,7 +9,7 @@
         
         <link rel="shortcut icon" href="../img/favicon.ico">
 
-	<title>Backend101 - My Docs</title>
+	<title>01: Model and Controller - My Docs</title>
 
         <link href="../css/bootstrap-custom.min.css" rel="stylesheet">
         <link href="../css/font-awesome-4.0.3.css" rel="stylesheet">
@@ -58,18 +58,18 @@
             
             
                 <li class="dropdown active">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">後端101 <b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">後端 API <b class="caret"></b></a>
                     <ul class="dropdown-menu">
                     
                         
 <li class="active">
-    <a href="./">Backend101</a>
+    <a href="./">01: Model and Controller</a>
 </li>
 
                     
                         
 <li >
-    <a href="../EntityFramework/">EntityFramework</a>
+    <a href="../EntityFramework/">02: Entity Framework</a>
 </li>
 
                     
@@ -79,7 +79,7 @@
             
             
                 <li >
-                    <a href="../frontend101/">前端101</a>
+                    <a href="../frontend101/">前端 UI</a>
                 </li>
             
             
@@ -120,7 +120,7 @@
         
             <li><a href="#model">​定義Model</a></li>
         
-            <li><a href="#controller-and-routing">Controller and Routing</a></li>
+            <li><a href="#controller">Controller</a></li>
         
             <li><a href="#postman-api">用 Postman 測試 Api</a></li>
         
@@ -145,7 +145,7 @@
 <p>選擇Empty Template, 但在加入WebApi Folders and references的地方打勾</p>
 <h2 id="model">​定義Model</h2>
 <p>在.NET 中，所有資料都要對應到一個Type, 例如string, decimal, string[] 等等。
-我們可以定義自己的Type: Class。一個class可以有很多fields, 每一個field 都可以是別的Type
+我們可以定義自己的Type: Class。一個class可以有很多fields, 每一個field 都可以是別的Type。
 在.NET中，每個class都有獨立的檔案，檔案名稱盡量跟class名稱相同，方便管理、避免混淆。
 在 Solution Manager 中 Model 點右鍵，新增Class。命名為"Product"，並貼上以下Code</p>
 <pre><code class="csharp">namespace Demo02.Models
@@ -168,27 +168,33 @@
 }
 </code></pre>
 
-<h2 id="controller-and-routing">Controller and Routing</h2>
+<h2 id="controller">Controller</h2>
+<p>一個 API 最基本的功能就是讓使用者能夠存取伺服器裡的資料。一個Controller 就是去做邏輯運算，去處理接收的資料或是要給出資料。一個 Controller 通常會對應到一個 Model, 針對這種資料執行四個種類的動作(CRUD Actions) :
+    1. Create: 新增一筆資料
+    2. Read: 讀取資料(包含讀取一筆，以及讀取全部，或是讀取符合某些條件的資料)
+    3. Update: 更新資料
+    4. Delete: 刪除資料</p>
+<p>我們的目標就是要讓Controller 能夠接收指令，並完成指定的動作。不過，一個更根本的問題是，當我的API收到一個 HttpRequest, 要怎麼決定要用哪一個 Controller, 並且使用哪一個 Action?</p>
+<p>.NET Web API 有一套Routing 的規則，我們只要依照這套規則來命名我們的 Controllers 和 Actions, .NET 就會幫我們自動挑選適當的 Controlle + Action 來回應一個 HttpRequest。</p>
+<p>要理解這套規則，要先複習一下 HttpRequest 的格式:</p>
 <h3 id="routing">Routing</h3>
 <p>參考: http://www.asp.net/web-api/overview/web-api-routing-and-actions/routing-in-aspnet-web-api</p>
 <p>HttpRequest 基本格式 </p>
-<pre><code>GET [路徑(Uri)] HTTP/1.1
+<pre><code>GET api/Products HTTP/1.1
 Host: http://www.wdmis.com/
 </code></pre>
 
-<p>我們希望透過指定不同的路徑，可以跟伺服器要到不同的資料</p>
+<p>GET 是 Http Request Method, 常用的 Http Request Method 還有 POST, PUT, DELETE。 GET 通常用來讀取資料，POST 和 PUT 用來編輯或新增資料，DELETE用來刪除資料。</p>
+<p>api/Products 是路徑 (Route), 像是地址。所以說，一個地址 + 動作構成了一個對API的指令。</p>
+<p>而這些指令的格式也是有約定慣例:</p>
 <pre><code>GET api/Products =&gt; 回傳所有Products
 GET api/Products/2 =&gt; 回傳 Id是2的Product
 POST api/Products =&gt; 新增一個Product
+DELETE api/Products/1 =&gt; 把 Id 是 1 的Product 移除
+Put api/Products/4 =&gt; 編輯 Id 是4的 Product
 </code></pre>
 
-<ol>
-<li>Controller 的功能就在於接收Http Request 並撈取、運算要回傳資料。</li>
-<li>一個controller 是由好幾個Action 所構成，每個Action 處理一種Request Method + Uri組合。  ​</li>
-<li>Routing 就是在決定一個Request Method + Uri，要對應到哪一個Controller以及哪一個Action。</li>
-<li>路徑可以使用預設規則，或是自訂規則。
-舉例:</li>
-</ol>
+<p>而 .NET api 辨認這些 Request 並且挑選適當的 Controller and Action?</p>
 <p>打開 AppStart/WebApiConfig.cs 看看routing的設定</p>
 <pre><code class="csharp">public static class WebApiConfig
 {
@@ -208,67 +214,59 @@ POST api/Products =&gt; 新增一個Product
 }
 </code></pre>
 
-<p>在Controller資料夾新增Controller, 選擇Empty Controller, 命名為 "ProductsController"</p>
+<p>這個設定的意思是，當有人送了一個 route 包含了 "api/Products" 的字串，.NET Web API就會挑選名子叫做 ProductsController 的Controller。</p>
+<p>另外不同的 HTTP Request Method (GET, POST, PUT, DELETE) 要對應到不同的 Action。</p>
+<p>GET api/Products 通常會對應到名子為 <code>Get()</code> 或 <code>GetProducts()</code> 或 <code>GetAllProducts()</code> 的 Action</p>
+<p>GET api/Products/1 通常會對應到名子是 <code>GetId()</code>, <code>GetProductById()</code> 等名子的 Action </p>
+<p>POST api/Products 通常會對應到名子是 <code>Create()</code> 的 Action
+DELETE api/Products/2 通常會對應到名子是 <code>DELETE()</code>的 Action</p>
+<p>我們今天先做一個能讀取資料的 Controller 就好(也就是接收 GET api/Products 的HttpRequest)</p>
+<p>所以我們要建立一個Controller, 並新增一個名子是 <code>GetProductById()</code> </p>
+<p>在Controller資料夾按右鍵，選擇新增Controller, 選擇Empty Controller, 命名為 "ProductsController"，並貼上以下Code</p>
 <pre><code class="csharp">public class ProductsController : ApiController
 {
-    public IHttpActionResult GetAllProducts() { }
-    public IHttpActionResult GetProductById(int id) { }
-    public HttpResponseMessage DeleteProduct(int id){ }
-}
-</code></pre>
-
-<p>以上有三個Actions, 每個Action都是一個function (method)
-依照預設路徑，路徑包含 api/Products都會導引到 ProducstController
-GetAllProducts 要對應到 Get api/Products
-GetProductById 會對應到 Get api/Products/2
-DeleteProduct 會對應到 Post api/Products/2</p>
-<h3 id="actions-in-controller">Actions in Controller</h3>
-<ol>
-<li>GetAllProducts
-編輯第一個Action，新增兩個Product 實體，存到一個list中，回傳整個list。WebApi會自動幫我們把資料用JSON 格式回傳出去。</li>
-</ol>
-<pre><code class="csharp">public IHttpActionResult GetAllProducts()
-{
-    var product1 = new Product()
+    // GET api/Products
+    public IHttpActionResult GetAllProducts()
     {
-        Id = 1,
-        Name = &quot;Desktop Computer&quot;,
-        Price = 100
-    };
-    var product2 = new Product()
-    {
-        Id = 1,
-        Name = &quot;Laptop Computer&quot;,
-        Price = 150
-    };
-
-    var products = new List&lt;Product&gt;()
-    {
-        product1,
-        product2
-    };
-    return Ok(products);
-}
-</code></pre>
-
-<ol>
-<li>GetProductById</li>
-</ol>
-<pre><code class="csharp">public IHttpActionResult GetProductById(int id)
-{
-    if (id == 1)
-    {
-        return Ok(new Product()
+        var product1 = new Product()
         {
             Id = 1,
-            Name = &quot;Desk&quot;,
-            Price = 0
-        });
+            Name = &quot;Desktop Computer&quot;,
+            Price = 100
+        };
+        var product2 = new Product()
+        {
+            Id = 1,
+            Name = &quot;Laptop Computer&quot;,
+            Price = 150
+        };
+        var products = new List&lt;Product&gt;()
+        {
+            product1,
+            product2
+        };
+        return Ok(products);
     }
-    return NotFound();
+
+    // GET api/Products/1
+    public IHttpActionResult GetProductById(int id)
+    {
+        if (id == 1)
+        {
+            return Ok(new Product()
+            {
+                Id = 1,
+                Name = &quot;Desk&quot;,
+                Price = 0
+            });
+        }
+        return NotFound();
+    }
+
 }
 </code></pre>
 
+<p>我們新增了兩個 Actions, 依照 .NET Web API內建的命名規則，一個會接收 GET api/Products, 另一個會接收 GET api/Products/id 的 Request, 分別回傳多筆以及單筆資料。</p>
 <h3 id="build">Build</h3>
 <ol>
 <li>F5 : 啟動Debug Mode, 可設定 break points, 但debug狀態下不能編輯。在游標所在的位置按下F9可設定斷點。</li>
@@ -297,7 +295,28 @@ DeleteProduct 會對應到 Post api/Products/2</p>
 ]
 </code></pre>
 
-<p>(截圖是後來才截的，所以多了兩筆資料，請忽略)</p></div>
+<p>(截圖是後來才截的，所以多了兩筆資料，請忽略)</p>
+<p>小結: </p>
+<ol>
+<li>定義 Model 是在定義資料格式。</li>
+<li>一個 Model 通常會對應到一個 Controller, 這個Controller 通常會去執行四個種類的動作(CRUD) <ol>
+<li>Create: 新增一筆資料</li>
+<li>Read: 讀取資料(包含讀取一筆，以及讀取全部，或是讀取符合某些條件的資料)</li>
+<li>Update: 更新資料</li>
+<li>Delete: 刪除資料</li>
+</ol>
+</li>
+<li>
+<p>每個動作會對應到一個 HttpRequest Method + route, .NET web API routing 就是在決定給定一個傳送進來的 HttpRequest Method + route, 我要選擇哪一個 Controller 裡面的哪一個 Action 來執行動作。</p>
+</li>
+<li>
+<p>這篇講義示範了如何做出一個Controller, 並能接受 GET api/Products 的Request, 並回傳儲存在程式中的兩筆資料。</p>
+</li>
+<li>
+<p>下篇會著重在，如何把Model 的資料格式對應到 SQL Database中，並且維護這樣的對應關係，以及在 Controller 中能夠從Database讀取資料。</p>
+</li>
+</ol>
+<p><a href="../EntityFramework/">下一篇: Entity Framework</a></p></div>
         </div>
 
         <footer class="col-md-12">
