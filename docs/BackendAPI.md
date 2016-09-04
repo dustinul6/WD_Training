@@ -206,10 +206,12 @@ public class ProductsController : ApiController
 
 1. 定義 Model 是在定義資料格式。
 2. 一個 Model 通常會對應到一個 Controller, 這個Controller 通常會去執行四個種類的動作(CRUD) 
+
     1. Create: 新增一筆資料
     2. Read: 讀取資料(包含讀取一筆，以及讀取全部，或是讀取符合某些條件的資料)
     3. Update: 更新資料
     4. Delete: 刪除資料
+
 4. 每個動作會對應到一個 HttpRequest Method + route, .NET web API routing 就是在決定給定一個傳送進來的 HttpRequest Method + route, 我要選擇哪一個 Controller 裡面的哪一個 Action 來執行動作。
 
 5. 這篇講義示範了如何做出一個Controller, 並能接受 GET api/Products 的Request, 並回傳儲存在程式中的兩筆資料。
