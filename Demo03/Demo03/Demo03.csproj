@@ -56,6 +56,18 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.OData.Core, Version=6.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OData.Core.6.15.0\lib\portable-net45+win+wpa81\Microsoft.OData.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.OData.Edm, Version=6.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.OData.Edm.6.15.0\lib\portable-net45+win+wpa81\Microsoft.OData.Edm.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Spatial, Version=6.15.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Spatial.6.15.0\lib\portable-net45+win+wpa81\Microsoft.Spatial.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
@@ -66,6 +78,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.OData, Version=5.9.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.OData.5.9.1\lib\net45\System.Web.OData.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Web" />
@@ -94,6 +110,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BrandsController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -114,7 +131,24 @@
     <Compile Include="Migrations\201609032018271_AddCustomer.Designer.cs">
       <DependentUpon>201609032018271_AddCustomer.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609110006216_AddedBrand.cs" />
+    <Compile Include="Migrations\201609110006216_AddedBrand.Designer.cs">
+      <DependentUpon>201609110006216_AddedBrand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609110017236_AddedFK.cs" />
+    <Compile Include="Migrations\201609110017236_AddedFK.Designer.cs">
+      <DependentUpon>201609110017236_AddedFK.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609110043047_AddFKData.cs" />
+    <Compile Include="Migrations\201609110043047_AddFKData.Designer.cs">
+      <DependentUpon>201609110043047_AddFKData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201609110059476_SetFK.cs" />
+    <Compile Include="Migrations\201609110059476_SetFK.Designer.cs">
+      <DependentUpon>201609110059476_SetFK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\ProductsContext.cs" />
@@ -144,6 +178,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609032018271_AddCustomer.resx">
       <DependentUpon>201609032018271_AddCustomer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110006216_AddedBrand.resx">
+      <DependentUpon>201609110006216_AddedBrand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110017236_AddedFK.resx">
+      <DependentUpon>201609110017236_AddedFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110043047_AddFKData.resx">
+      <DependentUpon>201609110043047_AddFKData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609110059476_SetFK.resx">
+      <DependentUpon>201609110059476_SetFK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
