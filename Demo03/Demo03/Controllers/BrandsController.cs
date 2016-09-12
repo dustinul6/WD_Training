@@ -5,6 +5,7 @@ using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.Http.Cors;
 using System.Web.OData;
 
 namespace Demo03.Controllers
@@ -20,6 +21,7 @@ namespace Demo03.Controllers
     builder.EntitySet<Product>("Products"); 
     config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class BrandsController : ODataController
     {
         private AppDbContext db = new AppDbContext();
