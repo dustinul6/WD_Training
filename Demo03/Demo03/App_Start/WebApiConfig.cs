@@ -1,4 +1,5 @@
 ﻿using Demo03.Models;
+using ModelCollections.Models;
 using System.Web.Http;
 using System.Web.OData.Builder;
 using System.Web.OData.Extensions;
@@ -28,6 +29,7 @@ namespace Demo03
             builder.EntitySet<Product>("Products");
             //Using the "ProductsController"
             builder.EntitySet<Brand>("Brands");
+            builder.EntitySet<PUR010>("PUR010");
             //Using the "BrandsController"
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
