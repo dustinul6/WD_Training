@@ -1,6 +1,9 @@
 ## Ignore mkdocs built site
 site/
 
+## Ignore .exe
+*.exe
+
 ## Ignore vim generated temporary files
 *.swp
 
