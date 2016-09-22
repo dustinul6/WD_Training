@@ -184,6 +184,36 @@
             "location": "/frontend101/#api", 
             "text": "\u6211\u5011\u7528\u4e00\u500b\u5c08\u9580\u7d66\u958b\u767c\u8005\u6e2c\u8a66\u7528\u7684API\nhttps://jsonplaceholder.typicode.com/    \u7528Postman\u6e2c\u8a66\u4e00\u4e0b\uff0c\u770bdata\u9577\u4ec0\u9ebc\u6a23\u5b50    GET https://jsonplaceholder.typicode.com/users   \u7de8\u8f2f app.js", 
             "title": "\u53d6\u5f97\u5f8c\u7aef\u8cc7\u6599\uff08\u547c\u53ebAPI\uff09"
+        }, 
+        {
+            "location": "/Odata/", 
+            "text": "Odata \u8a9e\u6cd5\n\n\n$filter\n\n\n\n\n\u67e5\u8a62 SUBNAME \u7b49\u65bc '\u5927\u9716'\n\n\n\n\nhttp://localhost:56490/odata/PUR010?$filter=SUBNAME eq '\u5927\u9716'\n\n\n\n\n\n\n\u67e5\u8a62 IN_TYPE \u5305\u542b '\u4e94\u91d1' \u5b57\u4e32\n\n\n\n\nhttp://localhost:56490/odata/PUR010?$filter=contains(IN_TYPE, '\u4e94\u91d1')\n\n\n\n\n\n\n\u67e5\u8a62 MOD_DATE == 2016-06-21T08:27:46-04:00\n\u6642\u9593\u683c\u5f0f\u70ba DateTimeOffSet, \u591a\u4e86\u6642\u5340\n\n\n\n\nhttp://localhost:56490/odata/PUR010?$filter=MOD_DATE eq 2016-06-21T08:27:46-04:00\n\n\n\n\n\n\n\u67e5\u8a62 MOD_DATE \n 2016-06-21T08:27:46-04:00\n\n\n\n\nhttp://localhost:56490/odata/PUR010?$filter=MOD_DATE gt 2016-06-21T08:27:46-04:00\n\n\n\n\n\n\n\"==\" : eq (equal)\n\n\n\"\n\" : gt (greater than)\n\n\n\"\n\" : lt (less than)\n\n\n\"\n=\" : ge (greater or equal to)\n\n\n\"\n=\" : le (less or equal to)\n\n\n\n\n\"!=\" : ne (not equal )\n\n\n\n\n\n\n\u67e5\u8a62 DATE1 \n 2016-06-21T08:27:46-04:00\nhttp://localhost:56490/odata/PUR010?$filter=MOD_DATE eq null\n\n\n\n\n\n\nand, or \n\n\n\n\n\n\nhttp://localhost:56490/odata/PUR010?$filter=MOD_DATE eq null and DATE1 lt 2008-04-24T15:48:05-04:00\n\n\n\n\n$expand\n\n\nhttp://localhost:56490/odata/Products?$expand=Brand\n\n\n\n\n{\n  \n@odata.context\n: \nhttp://localhost:56490/odata/$metadata#Products\n,\n  \nvalue\n: [\n    {\n      \nId\n: 1,\n      \nName\n: \nComputer\n,\n      \nPrice\n: 200,\n      \nDescription\n: \nGood product\n,\n      \nBrandId\n: 1,\n      \nBrand\n: {\n        \nName\n: \nACER\n,\n        \nId\n: 1\n      }\n    },\n    {\n      \nId\n: 2,\n      \nName\n: \nLaptop\n,\n      \nPrice\n: 150,\n      \nDescription\n: \nWonderful!!\n,\n      \nBrandId\n: 2,\n      \nBrand\n: {\n        \nName\n: \nASUS\n,\n        \nId\n: 2\n      }\n    },\n    {\n      \nId\n: 3,\n      \nName\n: \nMonitor\n,\n      \nPrice\n: 250,\n      \nDescription\n: null,\n      \nBrandId\n: 1,\n      \nBrand\n: {\n        \nName\n: \nACER\n,\n        \nId\n: 1\n      }\n    },\n    {\n      \nId\n: 4,\n      \nName\n: \nCell Phone\n,\n      \nPrice\n: 300,\n      \nDescription\n: null,\n      \nBrandId\n: 3,\n      \nBrand\n: {\n        \nName\n: \nHP\n,\n        \nId\n: 3\n      }\n    },\n    {\n      \nId\n: 6,\n      \nName\n: \n123\n,\n      \nPrice\n: 100,\n      \nDescription\n: \ngood\n,\n      \nBrandId\n: 1,\n      \nBrand\n: {\n        \nName\n: \nACER\n,\n        \nId\n: 1\n      }\n    }\n  ]\n}\n\n\n\n\nsingle result\n\n\nhttp://localhost:56490/odata/Products(1)\n\n\n\n\nhttp://localhost:56490/odata/Products(1)?$expand=Brand\n\n\n\n\n{\n  \n@odata.context\n: \nhttp://localhost:56490/odata/$metadata#Products/$entity\n,\n  \nId\n: 1,\n  \nName\n: \nComputer\n,\n  \nPrice\n: 200,\n  \nDescription\n: \nGood product\n,\n  \nBrandId\n: 1,\n  \nBrand\n: {\n    \nName\n: \nACER\n,\n    \nId\n: 1\n  }\n}\n\n\n\n\nRelational result\n\n\nhttp://localhost:56490/odata/Products(1)/Brand\n\n\n\n\n{\n  \n@odata.context\n: \nhttp://localhost:56490/odata/$metadata#Brands/$entity\n,\n  \nName\n: \nACER\n,\n  \nId\n: 1\n}\n\n\n\n\n\u8207\u4e0b\u5217\u76f8\u540c\n\n\nhttp://localhost:56490/odata/Brands(1)", 
+            "title": "Odata \u8a9e\u6cd5"
+        }, 
+        {
+            "location": "/Odata/#odata", 
+            "text": "", 
+            "title": "Odata \u8a9e\u6cd5"
+        }, 
+        {
+            "location": "/Odata/#filter", 
+            "text": "\u67e5\u8a62 SUBNAME \u7b49\u65bc '\u5927\u9716'   http://localhost:56490/odata/PUR010?$filter=SUBNAME eq '\u5927\u9716'   \u67e5\u8a62 IN_TYPE \u5305\u542b '\u4e94\u91d1' \u5b57\u4e32   http://localhost:56490/odata/PUR010?$filter=contains(IN_TYPE, '\u4e94\u91d1')   \u67e5\u8a62 MOD_DATE == 2016-06-21T08:27:46-04:00\n\u6642\u9593\u683c\u5f0f\u70ba DateTimeOffSet, \u591a\u4e86\u6642\u5340   http://localhost:56490/odata/PUR010?$filter=MOD_DATE eq 2016-06-21T08:27:46-04:00   \u67e5\u8a62 MOD_DATE   2016-06-21T08:27:46-04:00   http://localhost:56490/odata/PUR010?$filter=MOD_DATE gt 2016-06-21T08:27:46-04:00   \"==\" : eq (equal)  \" \" : gt (greater than)  \" \" : lt (less than)  \" =\" : ge (greater or equal to)  \" =\" : le (less or equal to)   \"!=\" : ne (not equal )    \u67e5\u8a62 DATE1   2016-06-21T08:27:46-04:00\nhttp://localhost:56490/odata/PUR010?$filter=MOD_DATE eq null    and, or     http://localhost:56490/odata/PUR010?$filter=MOD_DATE eq null and DATE1 lt 2008-04-24T15:48:05-04:00", 
+            "title": "$filter"
+        }, 
+        {
+            "location": "/Odata/#expand", 
+            "text": "http://localhost:56490/odata/Products?$expand=Brand  {\n   @odata.context :  http://localhost:56490/odata/$metadata#Products ,\n   value : [\n    {\n       Id : 1,\n       Name :  Computer ,\n       Price : 200,\n       Description :  Good product ,\n       BrandId : 1,\n       Brand : {\n         Name :  ACER ,\n         Id : 1\n      }\n    },\n    {\n       Id : 2,\n       Name :  Laptop ,\n       Price : 150,\n       Description :  Wonderful!! ,\n       BrandId : 2,\n       Brand : {\n         Name :  ASUS ,\n         Id : 2\n      }\n    },\n    {\n       Id : 3,\n       Name :  Monitor ,\n       Price : 250,\n       Description : null,\n       BrandId : 1,\n       Brand : {\n         Name :  ACER ,\n         Id : 1\n      }\n    },\n    {\n       Id : 4,\n       Name :  Cell Phone ,\n       Price : 300,\n       Description : null,\n       BrandId : 3,\n       Brand : {\n         Name :  HP ,\n         Id : 3\n      }\n    },\n    {\n       Id : 6,\n       Name :  123 ,\n       Price : 100,\n       Description :  good ,\n       BrandId : 1,\n       Brand : {\n         Name :  ACER ,\n         Id : 1\n      }\n    }\n  ]\n}", 
+            "title": "$expand"
+        }, 
+        {
+            "location": "/Odata/#single-result", 
+            "text": "http://localhost:56490/odata/Products(1)  http://localhost:56490/odata/Products(1)?$expand=Brand  {\n   @odata.context :  http://localhost:56490/odata/$metadata#Products/$entity ,\n   Id : 1,\n   Name :  Computer ,\n   Price : 200,\n   Description :  Good product ,\n   BrandId : 1,\n   Brand : {\n     Name :  ACER ,\n     Id : 1\n  }\n}", 
+            "title": "single result"
+        }, 
+        {
+            "location": "/Odata/#relational-result", 
+            "text": "http://localhost:56490/odata/Products(1)/Brand  {\n   @odata.context :  http://localhost:56490/odata/$metadata#Brands/$entity ,\n   Name :  ACER ,\n   Id : 1\n}  \u8207\u4e0b\u5217\u76f8\u540c  http://localhost:56490/odata/Brands(1)", 
+            "title": "Relational result"
         }
     ]
 }
