@@ -14,6 +14,5 @@ namespace Demo03.Models
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Brand> Brands { get; set; }
 
-        public System.Data.Entity.DbSet<ModelCollections.Models.PUR010> PUR010 { get; set; }
     }
 }

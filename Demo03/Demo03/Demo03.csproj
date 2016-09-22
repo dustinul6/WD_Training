@@ -156,6 +156,10 @@
     <Compile Include="Migrations\201609110059476_SetFK.Designer.cs">
       <DependentUpon>201609110059476_SetFK.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609220102094_SeeChanges.cs" />
+    <Compile Include="Migrations\201609220102094_SeeChanges.Designer.cs">
+      <DependentUpon>201609220102094_SeeChanges.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Brand.cs" />
     <Compile Include="Models\Customer.cs" />
@@ -199,6 +203,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201609110059476_SetFK.resx">
       <DependentUpon>201609110059476_SetFK.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609220102094_SeeChanges.resx">
+      <DependentUpon>201609220102094_SeeChanges.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
