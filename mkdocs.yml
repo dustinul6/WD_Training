@@ -5,6 +5,7 @@ pages:
         - '01: Model and Controller': 'BackendAPI.md'
         - '02: Entity Framework' : 'EntityFramework.md'
     - '前端 UI': 'frontend101.md'
+    - 'Odata 語法': 'Odata.md'
    
 
 theme: cosmo
