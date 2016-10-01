@@ -6,7 +6,7 @@ namespace ModelCollections.Models
 
     public partial class PUR070
     {
-        
+        [Key]
         [StringLength(10)]
         public string PUR07_NO { get; set; }
 
@@ -45,8 +45,6 @@ namespace ModelCollections.Models
         [Column(TypeName = "text")]
         public string REMARK1 { get; set; }
 
-        
-        
         public decimal TIME1 { get; set; }
 
         

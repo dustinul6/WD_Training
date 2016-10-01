@@ -134,6 +134,7 @@
       <DependentUpon>201610010728363_TestDrive2.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelBuilers\PURBuilder.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\PCM010.cs" />
     <Compile Include="Models\PUR010.cs" />
