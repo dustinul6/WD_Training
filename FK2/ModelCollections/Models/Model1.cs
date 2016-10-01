@@ -1,9 +1,6 @@
 namespace ModelCollections.Models
 {
-    using System;
     using System.Data.Entity;
-    using System.ComponentModel.DataAnnotations.Schema;
-    using System.Linq;
 
     public partial class Model1 : DbContext
     {
@@ -919,100 +916,124 @@ namespace ModelCollections.Models
                 .IsFixedLength();
 
             modelBuilder.Entity<PUR070>()
+                .HasKey(e => e.PUR07_NO);
+
+            modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUR07_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
+            
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.CUST_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.JOB_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.DIE_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.SUB_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.QTY1)
-                .HasPrecision(20, 2);
+                .HasPrecision(20, 2)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.SPECF)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.MD_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.MD_NA)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.REMARK1)
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.TIME1)
-                .HasPrecision(20, 2);
+                .HasPrecision(20, 2)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.DAYS)
-                .HasPrecision(20, 2);
+                .HasPrecision(20, 2)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.CHK_FLG)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.OK_FLG)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PLACE2)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PLACE)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUR03_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PSS02_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUR03_SEQ)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUB04_NO)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.DEL_MARK)
@@ -1021,7 +1042,8 @@ namespace ModelCollections.Models
 
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.TIMESTAMP)
-                .IsFixedLength();
+                .IsFixedLength()
+                .IsRequired();
 
             modelBuilder.Entity<SAL041>()
                 .Property(e => e.SAL04_NO)
