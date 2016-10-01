@@ -92,7 +92,16 @@
     <Compile Include="Migrations\201609210048005_init.Designer.cs">
       <DependentUpon>201609210048005_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201609302347346_PrimaryKeysPUR070.cs" />
+    <Compile Include="Migrations\201609302347346_PrimaryKeysPUR070.Designer.cs">
+      <DependentUpon>201609302347346_PrimaryKeysPUR070.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610010012085_Key.cs" />
+    <Compile Include="Migrations\201610010012085_Key.Designer.cs">
+      <DependentUpon>201610010012085_Key.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\ModelBuilers\PUR070Builder.cs" />
     <Compile Include="Models\NanfongContext.cs" />
     <Compile Include="Models\PCM010.cs" />
     <Compile Include="Models\PUR010.cs" />
@@ -103,6 +112,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201609210048005_init.resx">
       <DependentUpon>201609210048005_init.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201609302347346_PrimaryKeysPUR070.resx">
+      <DependentUpon>201609302347346_PrimaryKeysPUR070.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610010012085_Key.resx">
+      <DependentUpon>201610010012085_Key.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

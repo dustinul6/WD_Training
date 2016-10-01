@@ -30,6 +30,7 @@ namespace Demo03
             //Using the "ProductsController"
             builder.EntitySet<Brand>("Brands");
             builder.EntitySet<PUR010>("PUR010");
+            builder.EntitySet<PUR070>("PUR070");
             //Using the "BrandsController"
             config.MapODataServiceRoute(
                 routeName: "ODataRoute",
