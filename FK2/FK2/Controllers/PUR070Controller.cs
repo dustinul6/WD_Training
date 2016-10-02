@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using ModelCollections.Models;
 using System.Data;
-using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
-using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
-using System.Web.ModelBinding;
 using System.Web.OData;
-using System.Web.OData.Query;
-using System.Web.OData.Routing;
-using ModelCollections.Models;
 
 namespace FK2.Controllers
 {
@@ -28,7 +21,7 @@ namespace FK2.Controllers
     */
     public class PUR070Controller : ODataController
     {
-        private Model1 db = new Model1();
+        private ModelDbContext db = new ModelDbContext();
 
         // GET: odata/PUR070
         [EnableQuery]

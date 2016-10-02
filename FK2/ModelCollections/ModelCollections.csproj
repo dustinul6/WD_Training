@@ -141,9 +141,14 @@
     <Compile Include="Migrations\201610020101050_ForeignKey.Designer.cs">
       <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610020126119_ReModelSAL041.cs" />
+    <Compile Include="Migrations\201610020126119_ReModelSAL041.Designer.cs">
+      <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBuilers\PURBuilder.cs" />
-    <Compile Include="Models\Model1.cs" />
+    <Compile Include="ModelBuilers\SALBuilder.cs" />
+    <Compile Include="Models\ModelDbContext.cs" />
     <Compile Include="Models\PCM010.cs" />
     <Compile Include="Models\PUR010.cs" />
     <Compile Include="Models\PUR070.cs" />
@@ -162,6 +167,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610020101050_ForeignKey.resx">
       <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020126119_ReModelSAL041.resx">
+      <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
