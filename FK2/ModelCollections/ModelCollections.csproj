@@ -133,6 +133,14 @@
     <Compile Include="Migrations\201610010728363_TestDrive2.Designer.cs">
       <DependentUpon>201610010728363_TestDrive2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610011550012_PUR010Redefine.cs" />
+    <Compile Include="Migrations\201610011550012_PUR010Redefine.Designer.cs">
+      <DependentUpon>201610011550012_PUR010Redefine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020101050_ForeignKey.cs" />
+    <Compile Include="Migrations\201610020101050_ForeignKey.Designer.cs">
+      <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="ModelBuilers\PURBuilder.cs" />
     <Compile Include="Models\Model1.cs" />
@@ -148,6 +156,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610010728363_TestDrive2.resx">
       <DependentUpon>201610010728363_TestDrive2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011550012_PUR010Redefine.resx">
+      <DependentUpon>201610011550012_PUR010Redefine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020101050_ForeignKey.resx">
+      <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

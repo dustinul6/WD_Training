@@ -21,6 +21,7 @@ namespace ModelCollections.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             _purBuilder.PUR070(modelBuilder);
+            _purBuilder.PUR010(modelBuilder);
 
             modelBuilder.Entity<PCM010>()
                 .Property(e => e.PCM01_NO)

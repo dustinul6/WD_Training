@@ -14,6 +14,8 @@ namespace ModelCollections.Models
         [StringLength(10)]
         public string CUST_NO { get; set; }
 
+        public PUR010 Pur010 { get; set; }
+
         
         [StringLength(10)]
         public string JOB_NO { get; set; }

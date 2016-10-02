@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+
 namespace ModelCollections.Models
 {
     using System;
@@ -10,6 +12,8 @@ namespace ModelCollections.Models
 //        [Column(Order = 0)]
         [StringLength(10)]
         public string CUST_NO { get; set; }
+
+        public ICollection<PUR070> Pur070s { get; set; }
 
 //        [Key]
 //        [Column(Order = 1)]

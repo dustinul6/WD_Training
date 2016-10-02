@@ -7,10 +7,15 @@ namespace ModelCollections.ModelBuilers
     {
         public void PUR070(DbModelBuilder modelBuilder)
         {
+            //Defines Primary Key
             modelBuilder.Entity<PUR070>()
                 .HasKey(e => e.PUR07_NO);
 
-
+            modelBuilder.Entity<PUR070>()
+                .HasRequired(e => e.Pur010)
+                .WithMany(c => c.Pur070s)
+                .HasForeignKey(e => e.CUST_NO);
+            
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUR07_NO)
                 .IsFixedLength()
@@ -324,7 +329,8 @@ namespace ModelCollections.ModelBuilers
             modelBuilder.Entity<PUR010>()
                 .Property(e => e.CONN_TYPE)
                 .IsFixedLength()
-                .IsUnicode(false);
+                .IsUnicode(false)
+                .IsRequired();
 
             modelBuilder.Entity<PUR010>()
                 .Property(e => e.MOD_NAME)
