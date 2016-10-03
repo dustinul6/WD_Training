@@ -145,7 +145,16 @@
     <Compile Include="Migrations\201610020126119_ReModelSAL041.Designer.cs">
       <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610020241122_CommentKey.cs" />
+    <Compile Include="Migrations\201610020241122_CommentKey.Designer.cs">
+      <DependentUpon>201610020241122_CommentKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020254248_ChangedSAL041PK.cs" />
+    <Compile Include="Migrations\201610020254248_ChangedSAL041PK.Designer.cs">
+      <DependentUpon>201610020254248_ChangedSAL041PK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="ModelBuilers\PCMBuilder.cs" />
     <Compile Include="ModelBuilers\PURBuilder.cs" />
     <Compile Include="ModelBuilers\SALBuilder.cs" />
     <Compile Include="Models\ModelDbContext.cs" />
@@ -170,6 +179,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610020126119_ReModelSAL041.resx">
       <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020241122_CommentKey.resx">
+      <DependentUpon>201610020241122_CommentKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020254248_ChangedSAL041PK.resx">
+      <DependentUpon>201610020254248_ChangedSAL041PK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

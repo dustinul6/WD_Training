@@ -14,6 +14,8 @@ namespace ModelCollections.Models
         [StringLength(10)]
         public string CUST_NO { get; set; }
 
+        // 以下新增
+        // [ForeignKey("CUST_NO")]
         public PUR010 Pur010 { get; set; }
 
         

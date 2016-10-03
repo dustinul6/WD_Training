@@ -7,15 +7,14 @@ namespace ModelCollections.ModelBuilers
     {
         public void PUR070(DbModelBuilder modelBuilder)
         {
-            //Defines Primary Key
+            //以下自己新增
+            //Foreign Key:
             modelBuilder.Entity<PUR070>()
-                .HasKey(e => e.PUR07_NO);
-
-            modelBuilder.Entity<PUR070>()
-                .HasRequired(e => e.Pur010)
+                .HasRequired(x => x.Pur010)
                 .WithMany(c => c.Pur070s)
                 .HasForeignKey(e => e.CUST_NO);
-            
+
+            // 以下是 .net 產生
             modelBuilder.Entity<PUR070>()
                 .Property(e => e.PUR07_NO)
                 .IsFixedLength()

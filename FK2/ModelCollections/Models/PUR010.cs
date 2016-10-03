@@ -13,6 +13,7 @@ namespace ModelCollections.Models
         [StringLength(10)]
         public string CUST_NO { get; set; }
 
+        //·s¼W
         public ICollection<PUR070> Pur070s { get; set; }
 
 //        [Key]
@@ -128,6 +129,7 @@ namespace ModelCollections.Models
 
 //        [Key]
 //        [Column(Order = 23)]
+        [Required]
         [StringLength(10)]
         public string ID_NO { get; set; }
 

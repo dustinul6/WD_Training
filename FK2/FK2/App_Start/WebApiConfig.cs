@@ -22,6 +22,7 @@ namespace FK2
 
             ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
             builder.EntitySet<PUR070>("PUR070");
+            builder.EntitySet<PCM010>("PCM010");
             config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
 
         }

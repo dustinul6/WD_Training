@@ -6,14 +6,15 @@ namespace ModelCollections.Models
 
     public partial class SAL041
     {
-        [Key]
+        //[Key]
+        [Required]
         [Column(Order = 0)]
         [StringLength(10)]
         public string SAL04_NO { get; set; }
 
         public DateTime? DATE1 { get; set; }
 
-        //[Key]
+        [Key]
         [Required]
         [Column(Order = 1)]
         [StringLength(10)]
