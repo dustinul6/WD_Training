@@ -1,11 +1,18 @@
-﻿using ModelCollections.Models;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using System.Web.Http;
+using System.Web.ModelBinding;
 using System.Web.OData;
+using System.Web.OData.Query;
+using System.Web.OData.Routing;
+using ModelCollections.Models;
 
 namespace FK2.Controllers
 {
@@ -16,29 +23,29 @@ namespace FK2.Controllers
     using System.Web.OData.Extensions;
     using ModelCollections.Models;
     ODataConventionModelBuilder builder = new ODataConventionModelBuilder();
-    builder.EntitySet<PUR070>("PUR070");
+    builder.EntitySet<PCM010>("PCM010");
     config.MapODataServiceRoute("odata", "odata", builder.GetEdmModel());
     */
-    public class PUR070Controller : ODataController
+    public class PCM010Controller : ODataController
     {
         private ModelDbContext db = new ModelDbContext();
 
-        // GET: odata/PUR070
+        // GET: odata/PCM010
         [EnableQuery]
-        public IQueryable<PUR070> GetPUR070()
+        public IQueryable<PCM010> GetPCM010()
         {
-            return db.PUR070;
+            return db.PCM010;
         }
 
-        // GET: odata/PUR070(5)
+        // GET: odata/PCM010(5)
         [EnableQuery]
-        public SingleResult<PUR070> GetPUR070([FromODataUri] string key)
+        public SingleResult<PCM010> GetPCM010([FromODataUri] string key)
         {
-            return SingleResult.Create(db.PUR070.Where(pUR070 => pUR070.PUR07_NO == key));
+            return SingleResult.Create(db.PCM010.Where(pCM010 => pCM010.DIE_NO == key));
         }
 
-        // PUT: odata/PUR070(5)
-        public async Task<IHttpActionResult> Put([FromODataUri] string key, Delta<PUR070> patch)
+        // PUT: odata/PCM010(5)
+        public async Task<IHttpActionResult> Put([FromODataUri] string key, Delta<PCM010> patch)
         {
             Validate(patch.GetEntity());
 
@@ -47,13 +54,13 @@ namespace FK2.Controllers
                 return BadRequest(ModelState);
             }
 
-            PUR070 pUR070 = await db.PUR070.FindAsync(key);
-            if (pUR070 == null)
+            PCM010 pCM010 = await db.PCM010.FindAsync(key);
+            if (pCM010 == null)
             {
                 return NotFound();
             }
 
-            patch.Put(pUR070);
+            patch.Put(pCM010);
 
             try
             {
@@ -61,7 +68,7 @@ namespace FK2.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PUR070Exists(key))
+                if (!PCM010Exists(key))
                 {
                     return NotFound();
                 }
@@ -71,18 +78,18 @@ namespace FK2.Controllers
                 }
             }
 
-            return Updated(pUR070);
+            return Updated(pCM010);
         }
 
-        // POST: odata/PUR070
-        public async Task<IHttpActionResult> Post(PUR070 pUR070)
+        // POST: odata/PCM010
+        public async Task<IHttpActionResult> Post(PCM010 pCM010)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            db.PUR070.Add(pUR070);
+            db.PCM010.Add(pCM010);
 
             try
             {
@@ -90,7 +97,7 @@ namespace FK2.Controllers
             }
             catch (DbUpdateException)
             {
-                if (PUR070Exists(pUR070.PUR07_NO))
+                if (PCM010Exists(pCM010.DIE_NO))
                 {
                     return Conflict();
                 }
@@ -100,12 +107,12 @@ namespace FK2.Controllers
                 }
             }
 
-            return Created(pUR070);
+            return Created(pCM010);
         }
 
-        // PATCH: odata/PUR070(5)
+        // PATCH: odata/PCM010(5)
         [AcceptVerbs("PATCH", "MERGE")]
-        public async Task<IHttpActionResult> Patch([FromODataUri] string key, Delta<PUR070> patch)
+        public async Task<IHttpActionResult> Patch([FromODataUri] string key, Delta<PCM010> patch)
         {
             Validate(patch.GetEntity());
 
@@ -114,13 +121,13 @@ namespace FK2.Controllers
                 return BadRequest(ModelState);
             }
 
-            PUR070 pUR070 = await db.PUR070.FindAsync(key);
-            if (pUR070 == null)
+            PCM010 pCM010 = await db.PCM010.FindAsync(key);
+            if (pCM010 == null)
             {
                 return NotFound();
             }
 
-            patch.Patch(pUR070);
+            patch.Patch(pCM010);
 
             try
             {
@@ -128,7 +135,7 @@ namespace FK2.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!PUR070Exists(key))
+                if (!PCM010Exists(key))
                 {
                     return NotFound();
                 }
@@ -138,19 +145,19 @@ namespace FK2.Controllers
                 }
             }
 
-            return Updated(pUR070);
+            return Updated(pCM010);
         }
 
-        // DELETE: odata/PUR070(5)
+        // DELETE: odata/PCM010(5)
         public async Task<IHttpActionResult> Delete([FromODataUri] string key)
         {
-            PUR070 pUR070 = await db.PUR070.FindAsync(key);
-            if (pUR070 == null)
+            PCM010 pCM010 = await db.PCM010.FindAsync(key);
+            if (pCM010 == null)
             {
                 return NotFound();
             }
 
-            db.PUR070.Remove(pUR070);
+            db.PCM010.Remove(pCM010);
             await db.SaveChangesAsync();
 
             return StatusCode(HttpStatusCode.NoContent);
@@ -165,9 +172,9 @@ namespace FK2.Controllers
             base.Dispose(disposing);
         }
 
-        private bool PUR070Exists(string key)
+        private bool PCM010Exists(string key)
         {
-            return db.PUR070.Count(e => e.PUR07_NO == key) > 0;
+            return db.PCM010.Count(e => e.DIE_NO == key) > 0;
         }
     }
 }

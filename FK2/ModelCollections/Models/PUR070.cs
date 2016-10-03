@@ -6,13 +6,17 @@ namespace ModelCollections.Models
 
     public partial class PUR070
     {
-        
+        [Key]
         [StringLength(10)]
         public string PUR07_NO { get; set; }
 
         
         [StringLength(10)]
         public string CUST_NO { get; set; }
+
+        // 以下新增
+        // [ForeignKey("CUST_NO")]
+        public PUR010 Pur010 { get; set; }
 
         
         [StringLength(10)]
@@ -45,8 +49,6 @@ namespace ModelCollections.Models
         [Column(TypeName = "text")]
         public string REMARK1 { get; set; }
 
-        
-        
         public decimal TIME1 { get; set; }
 
         

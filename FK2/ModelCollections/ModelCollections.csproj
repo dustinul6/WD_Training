@@ -133,8 +133,31 @@
     <Compile Include="Migrations\201610010728363_TestDrive2.Designer.cs">
       <DependentUpon>201610010728363_TestDrive2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201610011550012_PUR010Redefine.cs" />
+    <Compile Include="Migrations\201610011550012_PUR010Redefine.Designer.cs">
+      <DependentUpon>201610011550012_PUR010Redefine.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020101050_ForeignKey.cs" />
+    <Compile Include="Migrations\201610020101050_ForeignKey.Designer.cs">
+      <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020126119_ReModelSAL041.cs" />
+    <Compile Include="Migrations\201610020126119_ReModelSAL041.Designer.cs">
+      <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020241122_CommentKey.cs" />
+    <Compile Include="Migrations\201610020241122_CommentKey.Designer.cs">
+      <DependentUpon>201610020241122_CommentKey.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201610020254248_ChangedSAL041PK.cs" />
+    <Compile Include="Migrations\201610020254248_ChangedSAL041PK.Designer.cs">
+      <DependentUpon>201610020254248_ChangedSAL041PK.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Models\Model1.cs" />
+    <Compile Include="ModelBuilers\PCMBuilder.cs" />
+    <Compile Include="ModelBuilers\PURBuilder.cs" />
+    <Compile Include="ModelBuilers\SALBuilder.cs" />
+    <Compile Include="Models\ModelDbContext.cs" />
     <Compile Include="Models\PCM010.cs" />
     <Compile Include="Models\PUR010.cs" />
     <Compile Include="Models\PUR070.cs" />
@@ -147,6 +170,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201610010728363_TestDrive2.resx">
       <DependentUpon>201610010728363_TestDrive2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610011550012_PUR010Redefine.resx">
+      <DependentUpon>201610011550012_PUR010Redefine.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020101050_ForeignKey.resx">
+      <DependentUpon>201610020101050_ForeignKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020126119_ReModelSAL041.resx">
+      <DependentUpon>201610020126119_ReModelSAL041.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020241122_CommentKey.resx">
+      <DependentUpon>201610020241122_CommentKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201610020254248_ChangedSAL041PK.resx">
+      <DependentUpon>201610020254248_ChangedSAL041PK.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
