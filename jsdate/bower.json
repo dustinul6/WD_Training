@@ -1,0 +1,21 @@
+{
+  "name": "jsdate",
+  "homepage": "https://github.com/dustinul6/WD_Training",
+  "authors": [
+    "Tzu-Yao Lin <dustinul6@gmail.com>"
+  ],
+  "description": "test js date functions",
+  "main": "index.html",
+  "keywords": [
+    "date"
+  ],
+  "license": "MIT",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
